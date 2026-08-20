@@ -8,6 +8,11 @@ const routes = [
         component: ContactBook,
     },
     {
+        path: "/login",
+        name: "login",
+        component: () => import("@/views/Login.vue"),
+    },
+    {
         path: "/:pathMatch(.*)*",
         name: "notfound",
         component: () => import("@/views/NotFound.vue"),

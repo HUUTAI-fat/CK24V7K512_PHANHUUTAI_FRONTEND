@@ -25,7 +25,9 @@ export default {
                 email: "",
                 address: "",
                 phone: "",
-                favorite: false
+                favorite: false,
+                favoriteNote: "", // Thêm dòng này
+                hobbies: []       // Thêm dòng này
             },
             message: "",
         };

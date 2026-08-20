@@ -26,6 +26,28 @@
                 <strong>Liên hệ yêu thích</strong>
             </label>
         </div>
+        <!-- Textbox ghi chú yêu thích theo yêu cầu -->
+        <div class="form-group" v-if="contactLocal.favorite">
+            <label for="favoriteNote">Lý do yêu thích (Textbox):</label>
+            <Field name="favoriteNote" type="text" class="form-control" v-model="contactLocal.favoriteNote" placeholder="Nhập lý do..." />
+        </div>
+
+        <!-- 4 mục sở thích (dùng Checkbox để có thể chọn nhiều) -->
+        <div class="form-group">
+            <label><strong>Sở thích:</strong></label>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" value="Âm nhạc" v-model="contactLocal.hobbies" /> Âm nhạc
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" value="Thể thao" v-model="contactLocal.hobbies" /> Thể thao
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" value="Du lịch" v-model="contactLocal.hobbies" /> Du lịch
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" value="Đọc sách" v-model="contactLocal.hobbies" /> Đọc sách
+            </div>
+        </div>
         <div class="form-group">
             <button class="btn btn-primary">Lưu</button>
             <button v-if="contactLocal._id" type="button" class="ml-2 btn btn-danger" @click="deleteContact">
@@ -77,6 +99,12 @@ export default {
             contactLocal: this.contact,
             contactFormSchema,
         };
+    },
+    created() {
+        // Nếu liên hệ chưa có mảng hobbies (ví dụ dữ liệu cũ), thì tạo mảng rỗng để không bị lỗi Form
+        if (!this.contactLocal.hobbies) {
+            this.contactLocal.hobbies = [];
+        }
     },
     methods: {
         submitContact() {
